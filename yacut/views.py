@@ -3,6 +3,7 @@ import random
 import string
 
 from flask import abort, flash, redirect, render_template
+from http import HTTPStatus
 
 from . import app, db
 from .forms import URL_map_Form
@@ -42,7 +43,11 @@ def index_view():
         )
         db.session.add(url_map)
         db.session.commit()
-        return render_template('yacut.html', form=form, short=short_name), 200
+        return render_template(
+            'yacut.html',
+            form=form,
+            short=short_name
+            ), HTTPStatus.OK
     return render_template('yacut.html', form=form)
 
 
@@ -51,6 +56,6 @@ def redirect_view(short):
     '''Редирект на новую ссылку.'''
     url_map = URL_map.query.filter_by(short=short).first()
     if not url_map:
-        abort(404)
+        abort(HTTPStatus.NOT_FOUND)
     original_url = url_map.original
     return redirect(original_url)

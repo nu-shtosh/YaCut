@@ -1,4 +1,4 @@
-# what_to_watch/settings.py
+# yacut/settings.py
 
 import os
 
