@@ -1,10 +1,10 @@
 # yacut/error_handlers.py
 
-import http
+from http import HTTPStatus
+
 from flask import jsonify, render_template
 
 from . import app, db
-from http import HTTPStatus
 
 
 @app.errorhandler(HTTPStatus.NOT_FOUND)

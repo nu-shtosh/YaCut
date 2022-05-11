@@ -1,9 +1,9 @@
 # yacut/views.py
 import random
 import string
+from http import HTTPStatus
 
 from flask import abort, flash, redirect, render_template
-from http import HTTPStatus
 
 from . import app, db
 from .forms import URL_map_Form
@@ -47,7 +47,7 @@ def index_view():
             'yacut.html',
             form=form,
             short=short_name
-            ), HTTPStatus.OK
+        ), HTTPStatus.OK
     return render_template('yacut.html', form=form)
 
 

@@ -1,8 +1,9 @@
 # yacut/api_views.py
 import re
+from http import HTTPStatus
 
 from flask import jsonify, request
-from http import HTTPStatus
+
 from . import app, db
 from .error_handlers import InvalidAPIUsage
 from .models import URL_map
@@ -22,7 +23,6 @@ def create_id():
     short_name = data.get('custom_id')
     if short_name == '' or short_name is None:
         short_name = get_unique_short_id()
-
 
     SYMBOLS = '^[A-Za-z0-9]*$'
     APPROVED_SYMBOLS = re.match(SYMBOLS, short_name)
